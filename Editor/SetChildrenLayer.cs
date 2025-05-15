@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEditor;
 
 public class SetChildrenLayer : EditorWindow
@@ -6,7 +6,7 @@ public class SetChildrenLayer : EditorWindow
     private GameObject targetObject;
     private int selectedLayer = 0;
 
-    [MenuItem("WP/ÉèÖÃÓÎÏ·ÎïÌåµÄ²ã¼¶")]
+    [MenuItem("WP/è®¾ç½®æ¸¸æˆç‰©ä½“çš„å±‚çº§")]
     public static void ShowWindow()
     {
         GetWindow<SetChildrenLayer>("Set Children Layer");
@@ -25,7 +25,7 @@ public class SetChildrenLayer : EditorWindow
             if (targetObject != null)
             {
                 SetLayerRecursively(targetObject, selectedLayer);
-                Debug.Log($"Set layer '{LayerMask.LayerToName(selectedLayer)}' to all children of {targetObject.name}");
+                Debug.LogFormat("Set layer '{0}' to all children of {1}", LayerMask.LayerToName(selectedLayer), targetObject.name);
             }
             else
             {

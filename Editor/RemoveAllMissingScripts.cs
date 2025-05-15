@@ -1,23 +1,27 @@
-using UnityEditor;
+锘縰sing UnityEditor;
 using UnityEngine;
 
 public class RemoveAllMissingScripts
 {
-    [MenuItem("WP/移除场景所有丢失的脚本")]
+    [MenuItem("WP/绉婚櫎鍦烘櫙鎵�鏈変涪澶辩殑鑴氭湰")]
     static void RemoveAllMissingScriptsInScene()
     {
-        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>(); // 这样可以找到未激活的物体
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>(); // 杩欐牱鍙互鎵惧埌鏈縺娲荤殑鐗╀綋
         int removedCount = 0;
 
         foreach (GameObject go in allObjects)
         {
-            if (go.hideFlags == HideFlags.None) // 过滤掉Unity内部的隐藏对象，避免影响其他系统
+            if (go.hideFlags == HideFlags.None) // 杩囨护鎺塙nity鍐呴儴鐨勯殣钘忓璞★紝閬垮厤褰卞搷鍏朵粬绯荤粺
             {
-                int count = GameObjectUtility.RemoveMonoBehavioursWithMissingScript(go);
+                #if UNITY_2018_3_OR_NEWER
+                         int count = GameObjectUtility.RemoveMonoBehavioursWithMissingScript(go);
+                #else
+                         int count = MissingScriptRemover2017.RemoveMissingScriptsRecursively(go);
+                #endif
                 removedCount += count;
             }
         }
 
-        Debug.Log($"Removed {removedCount} missing scripts from the scene (including inactive objects).");
+        Debug.LogFormat("Removed {0} missing scripts from the scene (including inactive objects).", removedCount);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -10,7 +10,7 @@ public class SetSortingLayerWindow : EditorWindow
     private int selectedSortingLayerIndex = 0;
     private string[] sortingLayerNames;
 
-    [MenuItem("WP/ÉèÖÃÓÎÏ·ÎïÌåµÄÅÅĞò²ã£¨°üÀ¨canvas×é¼şºÍÁ£×ÓÏµÍ³×é¼ş)")]
+    [MenuItem("WP/è®¾ç½®æ¸¸æˆç‰©ä½“çš„æ’åºå±‚ï¼ˆåŒ…æ‹¬canvasç»„ä»¶å’Œç²’å­ç³»ç»Ÿç»„ä»¶)")]
     public static void ShowWindow()
     {
         GetWindow<SetSortingLayerWindow>("Set Particle Layer");
@@ -25,7 +25,7 @@ public class SetSortingLayerWindow : EditorWindow
     {
         GUILayout.Label("Batch Set Particle Sorting Layer", EditorStyles.boldLabel);
 
-        // ÔÊĞíÍÏ×§¶à¸ö GameObject ½øÀ´
+        // å…è®¸æ‹–æ‹½å¤šä¸ª GameObject è¿›æ¥
         GUILayout.Label("Drag & Drop Scene Objects Below:", EditorStyles.miniBoldLabel);
 
         for (int i = 0; i < selectedObjects.Count; i++)
@@ -33,25 +33,25 @@ public class SetSortingLayerWindow : EditorWindow
             selectedObjects[i] = (GameObject)EditorGUILayout.ObjectField(selectedObjects[i], typeof(GameObject), true);
         }
 
-        // Ìí¼ÓĞÂÎïÌå
+        // æ·»åŠ æ–°ç‰©ä½“
         if (GUILayout.Button("Add Object"))
         {
             selectedObjects.Add(null);
         }
 
-        // Çå¿ÕËùÓĞÑ¡Ôñ
+        // æ¸…ç©ºæ‰€æœ‰é€‰æ‹©
         if (GUILayout.Button("Clear Selection"))
         {
             selectedObjects.Clear();
         }
 
-        // Sorting Layer ÏÂÀ­²Ëµ¥
+        // Sorting Layer ä¸‹æ‹‰èœå•
         if (sortingLayerNames.Length > 0)
         {
             selectedSortingLayerIndex = EditorGUILayout.Popup("Sorting Layer", selectedSortingLayerIndex, sortingLayerNames);
         }
 
-        // ÅúÁ¿ÉèÖÃ Sorting Layer
+        // æ‰¹é‡è®¾ç½® Sorting Layer
         if (GUILayout.Button("Set Layer for Selected"))
         {
             if (selectedObjects.Count > 0)
@@ -83,7 +83,7 @@ public class SetSortingLayerWindow : EditorWindow
 
         if (canvasArr.Length == 0)
         {
-            Debug.LogWarning($"No Canvas  found in {obj.name}");
+            Debug.LogWarningFormat("No Canvas  found in {0}", obj.name);
         }
         else {
             foreach (var canvas in canvasArr)
@@ -91,7 +91,7 @@ public class SetSortingLayerWindow : EditorWindow
                 canvas.sortingLayerName = layerName;
             }
 
-            Debug.Log($"Set {canvasArr.Length} Canvas in {obj.name} to Sorting Layer: {layerName}");
+            Debug.LogFormat("Set {0} Canvas in {1} to Sorting Layer: {2}", canvasArr.Length,obj.name, layerName);
         }
 
   
@@ -101,7 +101,7 @@ public class SetSortingLayerWindow : EditorWindow
 
         if (renderers.Length == 0)
         {
-            Debug.LogWarning($"No Particle System found in {obj.name}");
+            Debug.LogWarningFormat("No Particle System found in {0}", obj.name);
         }
         else {
             foreach (var renderer in renderers)
@@ -109,7 +109,7 @@ public class SetSortingLayerWindow : EditorWindow
                 renderer.sortingLayerName = layerName;
             }
 
-            Debug.Log($"Set {renderers.Length} Particle Systems in {obj.name} to Sorting Layer: {layerName}");
+            Debug.LogFormat("Set {0} Particle Systems in {1} to Sorting Layer: {2}", renderers.Length, obj.name, layerName);
         }
 
 
