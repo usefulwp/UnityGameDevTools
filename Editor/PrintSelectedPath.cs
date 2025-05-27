@@ -3,7 +3,7 @@ using UnityEditor;
 
 public class PrintSelectedPath : MonoBehaviour
 {
-    [MenuItem("工具/打印选中物体路径")] // 快捷键 Ctrl/Cmd + Shift + P
+    [MenuItem("WP/打印选中物体路径")] // 快捷键 Ctrl/Cmd + Shift + P
     static void PrintSelectedObjectPath()
     {
         GameObject selected = Selection.activeGameObject;
