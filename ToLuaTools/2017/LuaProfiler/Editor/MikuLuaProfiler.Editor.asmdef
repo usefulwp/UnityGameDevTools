@@ -1,0 +1,10 @@
+{
+    "name": "MikuLuaProfiler.Editor",
+    "references": [
+        "MIkuLuaProfiler.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
